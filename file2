@@ -1,0 +1,12 @@
+---
+ -hosts:all
+  become: yes
+  user:ansadmin 
+  tasks:
+   -name: this is my first playbook
+    yum: name=httpd state=present
+   -name: this is my second playbook
+    user: name=abhiram state=present
+   -name: thisis my third playbook
+    apt_get: name=nginx state=present
+    
