@@ -1,0 +1,24 @@
+provider "aws"{
+region : "ap-south-1"
+acess_key : "ckdshisufnhskhdgcf"
+secret_key : "fdkjvniodfung6546849"
+}
+resource "aws_vpc" "myvpc"{
+cidr_block = "10.0.0.0/24"
+tags = {
+   Name = "myvpc"
+     }
+ }
+ resource "aws_subnet" "mysub"{
+ vpc_id = aws_vpc.myvpc.id
+ cidr_block = "10.0.1.0/24"
+tags = {
+   Name = "mysubnet"
+   }
+ }
+ resource "aws_instance" "testisntance"{
+ ami= "ami-65165164"
+ key_name="us"
+ region = "ap-south-1"
+ instance_type= "t2.micro"
+ }
