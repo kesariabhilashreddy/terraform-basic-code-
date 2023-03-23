@@ -1,0 +1,38 @@
+how to install and do some performance in docker 
+$ sudo yum update -y
+$ sudo yum install docker -y
+$ sudo systemctl start docker
+$ sudo systemctl status docker
+$ sudo systemctl enable docker 
+$ sudo reboot
+now refresh the server for few minutes after rebooting it will connct
+$ sudo usermod -aG docker ec2-user
+$ docker pull nginx/any image
+now the images is downloaded now we have to run it
+$ docker run -it --name web1 nginx /binbash
+now i want to assign a volume for the container 
+$ docker run -it -v myvol:/var/www/html/ --name web2 nginx /bin/bash
+now i will assign the portmapping also 
+$ docker run -it -v myvol:/var/www/html/ -p 91:80 --name web3 nginx /bin/bash
+ the above command the 80 is a port num of nginx and through web we can connect using 91 included for the public ip of the server  13.23.56.14:91 ex
+ it will wont show the nginx page for that now go to security group of the server actions edit inbound rules--- add port 91 cidr anywhere 0.0.0.0/0
+$ docker start web3
+$ docker exec -it web3 /bin/bash
+now we will connect the container 
+$exit 
+$docker images
+$ docker ps -a
+$ docker stats
+now i want to assign only specific memory for that conatainer 
+docker run -it -memory = "1gb" -v mydata:/var/www/html/ -p 91:80 web4 nginx /bin/bash
+even after deleting the container the data will be stored in the /var/lib/docker
+now what we are checkint whteher the both myvol and my data stored in volumes or not
+sudo chmod 777 -R /var/lib/docker
+cd /var/lib/docker 
+we will be docker
+nw give give permissions 
+sudo chhmod 777 -R /volumes
+cd volums 
+ls
+we can see the files 
+
