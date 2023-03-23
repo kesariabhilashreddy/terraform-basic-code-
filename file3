@@ -1,0 +1,44 @@
+this are the commands of ansible installing
+prerequisite for ansible is python but the code for infrastructure built in ymal
+
+$ sudo yum update -y
+$ sudo amazon-extras-linux install ansible2 -y
+$ ansible --version
+$ sudo userad ansdmin 
+$ sudo passswd ansadmin
+$ sudo visudo 
+in  this go upto %wheel down of it give commands as ansadmin ALL = (ALL) NOPASSWD:ALL
+press esc :wq 
+$sudo vi /etc/ssh/sshd_config
+inthis go upto passwdauthentication there it will be no change it as yes
+$ sudo systemctl restart sshd
+$ su -ansadmin
+$ ssh-keygen
+enter for three time now all the keys will be generated
+$ cd /home/ansadmin/.ssh
+go to how many memberservers are there inthat 
+$ sudo useradd ansadmin
+sudo passwd ansadmin
+$ sudo visudo 
+same ansadmin ALL =(ALL) NOPASSWD:ALL
+esc :wq
+$ sudo vi /etc/ssh/sshd_config 
+go down change passwdauthentication no to yes
+three times enter
+$ssh-copy-id -i ~/.ssh/id-rsa .pub ansadmin@privateip
+enter 
+say yes
+passwd wtever given
+$ ssh@ansadmin@private ip of slave nodes
+now we will be in slave node exit
+same do this for another node 
+this is we are checking
+$ bash (it means refreshing)
+$sudo hostnamectl set-hostname controller
+$ sudo vi /etc/ansible/hosts
+give [slave node server name]
+ip adress
+esc :wq
+$ ansible all -m ping
+if connection exists it will display ping pong in green colour
+
